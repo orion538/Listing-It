@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item"
     android:layout_width="match_parent"
-    android:layout_height="?listPreferredItemHeight"
+    android:layout_height="?android:attr/listPreferredItemHeight"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:background="@android:color/white"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/text"
@@ -18,9 +19,10 @@
 
     <ImageView
         android:id="@+id/handle"
-        android:layout_width="?listPreferredItemHeight"
+        android:layout_width="?android:attr/listPreferredItemHeight"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|right"
         android:scaleType="center"
         app:srcCompat="@drawable/ic_reorder_grey_24dp" />
+
 </FrameLayout>
