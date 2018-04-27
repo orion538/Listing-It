@@ -9,14 +9,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.orion.listingit.Adapters.UserListAdapter;
+import com.orion.listingit.Adapters.ItemsAdapter;
 import com.orion.listingit.DummyData.ItemsData;
 import com.orion.listingit.Fragments.SortingOptionsBottomSheetDialogFragment;
 import com.orion.listingit.Helpers.SwipeAndDragHelper;
+import com.orion.listingit.Interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.Models.Item;
 import com.orion.listingit.R;
 
@@ -25,30 +26,43 @@ import java.util.List;
 public class ListDetailActivity
         extends AppCompatActivity {
 
+    private Toolbar mToolbar;
+
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLayoutManager;
+    private ItemsAdapter mAdapter;
+
+    private SwipeAndDragHelper mSwipeAndDragHelper;
+    private ItemTouchHelper mItemTouchHelper;
+
+    private SortingOptionsBottomSheetDialogFragment mSortingFragment;
+    private SortingOptionsRecyclerViewClickListener mListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_detail);
 
-        RecyclerView itemRecyclerView = findViewById(R.id.list);
-        itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        UserListAdapter adapter = new UserListAdapter();
-        SwipeAndDragHelper swipeAndDragHelper = new SwipeAndDragHelper(adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(swipeAndDragHelper);
-        adapter.setTouchHelper(touchHelper);
-        itemRecyclerView.setAdapter(adapter);
-        touchHelper.attachToRecyclerView(itemRecyclerView);
+        mRecyclerView = findViewById(R.id.list);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new ItemsAdapter();
+        mSwipeAndDragHelper = new SwipeAndDragHelper(mAdapter);
+        mItemTouchHelper = new ItemTouchHelper(mSwipeAndDragHelper);
+        mAdapter.setTouchHelper(mItemTouchHelper);
+        mRecyclerView.setAdapter(mAdapter);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
         ItemsData itemsData = new ItemsData();
         List<Item> itemsList = itemsData.getItemsList();
-        adapter.setUserList(itemsList);
+        mAdapter.setItemsList(itemsList);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(itemRecyclerView.getContext(),
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 DividerItemDecoration.VERTICAL);
-        itemRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +72,14 @@ public class ListDetailActivity
                         .setAction("Action", null).show();
             }
         });
+
+        mListener = new SortingOptionsRecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                // Do stuff to sort the list with items.
+                mSortingFragment.dismiss();
+            }
+        };
     }
 
     @Override
@@ -85,8 +107,9 @@ public class ListDetailActivity
     }
 
     private boolean openSortingOptionsDialog() {
-        SortingOptionsBottomSheetDialogFragment bottomSheetFragment = new SortingOptionsBottomSheetDialogFragment();
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        mSortingFragment = new SortingOptionsBottomSheetDialogFragment();
+        mSortingFragment.setSortingOptionsRecyclerViewClickListener(mListener);
+        mSortingFragment.show(getSupportFragmentManager(), mSortingFragment.getTag());
         return true;
     }
 }

@@ -14,7 +14,7 @@ import com.orion.listingit.ViewHolders.ItemViewHolder;
 
 import java.util.List;
 
-public class UserListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
+public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
         ActionCompletionContract {
     private static final int ITEM_TYPE = 1;
     private List<Item> itemsList;
@@ -62,7 +62,7 @@ public class UserListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return ITEM_TYPE;
     }
 
-    public void setUserList(List<Item> itemsList) {
+    public void setItemsList(List<Item> itemsList) {
         this.itemsList = itemsList;
         notifyDataSetChanged();
     }
@@ -83,7 +83,6 @@ public class UserListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void setTouchHelper(ItemTouchHelper touchHelper) {
-
         this.touchHelper = touchHelper;
     }
 }
