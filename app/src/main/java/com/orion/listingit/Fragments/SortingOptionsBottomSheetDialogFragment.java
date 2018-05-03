@@ -1,6 +1,8 @@
 package com.orion.listingit.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,10 +17,6 @@ import com.orion.listingit.R;
 public class SortingOptionsBottomSheetDialogFragment
         extends BottomSheetDialogFragment {
 
-    private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
-    private SortingOptionsAdapter mAdapter;
-
     private SortingOptionsRecyclerViewClickListener mListener;
 
     public SortingOptionsBottomSheetDialogFragment() {
@@ -26,8 +24,12 @@ public class SortingOptionsBottomSheetDialogFragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof SortingOptionsRecyclerViewClickListener) {
+            mListener = (SortingOptionsRecyclerViewClickListener) context;
+        }
     }
 
     @Override
@@ -35,22 +37,15 @@ public class SortingOptionsBottomSheetDialogFragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sorting_options, container, false);
-        mRecyclerView = view.findViewById(R.id.sorting_options_list);
+        RecyclerView mRecyclerView = view.findViewById(R.id.sorting_options_list);
 
-        mLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new SortingOptionsAdapter(mListener);
+        SortingOptionsAdapter mAdapter = new SortingOptionsAdapter(mListener);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
-    }
-
-    /**
-     * @param listener
-     */
-    public void setSortingOptionsRecyclerViewClickListener(SortingOptionsRecyclerViewClickListener listener) {
-        mListener = listener;
     }
 
 }

@@ -8,21 +8,18 @@ import android.widget.TextView;
 import com.orion.listingit.Interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.R;
 
-public class SortingItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SortingItemViewHolder extends RecyclerView.ViewHolder {
 
     public Button mSortingItem;
-    private SortingOptionsRecyclerViewClickListener mListener;
 
-    public SortingItemViewHolder(View itemView, SortingOptionsRecyclerViewClickListener listener) {
+    public SortingItemViewHolder(View itemView, final SortingOptionsRecyclerViewClickListener listener) {
         super(itemView);
-
-        mListener = listener;
         mSortingItem = itemView.findViewById(R.id.sorting_option_item);
-        mSortingItem.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View view) {
-        mListener.onClick(view, getAdapterPosition());
+        mSortingItem.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onClick(v, getAdapterPosition());
+            }
+        });
     }
 }
