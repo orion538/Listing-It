@@ -1,10 +1,10 @@
-package com.orion.listingit.Helpers;
+package com.orion.listingit.helpers;
 
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.orion.listingit.Interfaces.ActionCompletionContract;
+import com.orion.listingit.interfaces.ActionCompletionContract;
 
 public class SwipeAndDragHelper extends ItemTouchHelper.Callback {
 

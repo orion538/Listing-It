@@ -1,11 +1,10 @@
-package com.orion.listingit.ViewHolders;
+package com.orion.listingit.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.orion.listingit.Interfaces.SortingOptionsRecyclerViewClickListener;
+import com.orion.listingit.interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.R;
 
 public class SortingItemViewHolder extends RecyclerView.ViewHolder {

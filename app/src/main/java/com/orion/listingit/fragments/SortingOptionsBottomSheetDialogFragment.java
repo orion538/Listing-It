@@ -1,8 +1,7 @@
-package com.orion.listingit.Fragments;
+package com.orion.listingit.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orion.listingit.Adapters.SortingOptionsAdapter;
-import com.orion.listingit.Interfaces.SortingOptionsRecyclerViewClickListener;
+import com.orion.listingit.adapters.SortingOptionsAdapter;
+import com.orion.listingit.interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.R;
 
 public class SortingOptionsBottomSheetDialogFragment

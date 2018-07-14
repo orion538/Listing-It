@@ -1,6 +1,6 @@
-package com.orion.listingit.DummyData;
+package com.orion.listingit.dummydata;
 
-import com.orion.listingit.Models.Item;
+import com.orion.listingit.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.orion.listingit.Interfaces;
+package com.orion.listingit.interfaces;
 
 public interface ActionCompletionContract {
     void onViewMoved(int oldPosition, int newPosition);

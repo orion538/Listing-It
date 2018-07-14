@@ -1,4 +1,4 @@
-package com.orion.listingit.Adapters;
+package com.orion.listingit.adapters;
 
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orion.listingit.Enums.ItemSortingOptions;
-import com.orion.listingit.Interfaces.SortingOptionsRecyclerViewClickListener;
+import com.orion.listingit.enums.ItemSortingOptions;
+import com.orion.listingit.interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.R;
-import com.orion.listingit.ViewHolders.SortingItemViewHolder;
+import com.orion.listingit.viewholders.SortingItemViewHolder;
 
 public class SortingOptionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

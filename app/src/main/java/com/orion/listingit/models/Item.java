@@ -1,4 +1,4 @@
-package com.orion.listingit.Models;
+package com.orion.listingit.models;
 
 public class Item {
 

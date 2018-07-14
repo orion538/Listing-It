@@ -1,4 +1,4 @@
-package com.orion.listingit.Enums;
+package com.orion.listingit.enums;
 
 public class ItemSortingOptions {
 

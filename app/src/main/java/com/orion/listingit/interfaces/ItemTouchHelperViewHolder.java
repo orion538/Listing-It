@@ -1,4 +1,4 @@
-package com.orion.listingit.Interfaces;
+package com.orion.listingit.interfaces;
 
 import android.support.v7.widget.helper.ItemTouchHelper;
 

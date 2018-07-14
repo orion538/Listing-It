@@ -1,4 +1,4 @@
-package com.orion.listingit.Adapters;
+package com.orion.listingit.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -7,10 +7,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orion.listingit.Interfaces.ActionCompletionContract;
-import com.orion.listingit.Models.Item;
+import com.orion.listingit.interfaces.ActionCompletionContract;
+import com.orion.listingit.models.Item;
 import com.orion.listingit.R;
-import com.orion.listingit.ViewHolders.ItemViewHolder;
+import com.orion.listingit.viewholders.ItemViewHolder;
 
 import java.util.List;
 

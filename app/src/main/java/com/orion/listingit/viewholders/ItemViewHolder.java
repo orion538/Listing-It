@@ -1,4 +1,4 @@
-package com.orion.listingit.ViewHolders;
+package com.orion.listingit.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

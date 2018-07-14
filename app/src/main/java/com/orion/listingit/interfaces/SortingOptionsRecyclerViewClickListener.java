@@ -1,8 +1,6 @@
-package com.orion.listingit.Interfaces;
+package com.orion.listingit.interfaces;
 
 import android.view.View;
-
-import java.io.Serializable;
 
 public interface SortingOptionsRecyclerViewClickListener {
 
