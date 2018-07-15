@@ -4,7 +4,7 @@
     android:background="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/dummy"
+    android:text="@string/sorting_button_explanation"
     android:gravity="start|center_vertical"
     android:textSize="16sp"
     android:textAllCaps="false"

@@ -1,5 +1,6 @@
 package com.orion.listingit.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +17,10 @@ import android.widget.Toast;
 import com.orion.listingit.adapters.ItemsAdapter;
 import com.orion.listingit.dummydata.ItemsData;
 import com.orion.listingit.enums.ItemSortingOptions;
-import com.orion.listingit.fragments.NewListItemDialogFragment;
+import com.orion.listingit.fragments.NewGroceryListItemDialogFragment;
 import com.orion.listingit.fragments.SortingOptionsBottomSheetDialogFragment;
 import com.orion.listingit.helpers.SwipeAndDragHelper;
+import com.orion.listingit.interfaces.NewListItemDialogFragmentListener;
 import com.orion.listingit.interfaces.SortingOptionsRecyclerViewClickListener;
 import com.orion.listingit.models.Item;
 import com.orion.listingit.R;
@@ -27,15 +29,16 @@ import java.util.List;
 
 public class ListDetailActivity
         extends AppCompatActivity
-        implements SortingOptionsRecyclerViewClickListener {
+        implements SortingOptionsRecyclerViewClickListener,
+        NewListItemDialogFragmentListener {
 
     private static final String SORTING_FRAGMENT_TAG = "SortingFragmentTag";
-    private static final String NEW_LIST_TITLE_DIALOG_FRAGMENT_TAG = "NewListTitleDialogFragment";
+    private static final String NEW_LIST_ITEM_DIALOG_FRAGMENT_TAG = "NewListItemDialogFragment";
 
     private SortingOptionsBottomSheetDialogFragment mSortingFragment;
-    private NewListItemDialogFragment mNewListTitleDialogFrament;
-
+    private NewGroceryListItemDialogFragment mNewListItemDialogFragment;
     private Toast mToast;
+    private List<Item> mItemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class ListDetailActivity
         setContentView(R.layout.activity_list_detail);
 
         mSortingFragment = new SortingOptionsBottomSheetDialogFragment();
-        mNewListTitleDialogFrament = new NewListItemDialogFragment();
+        mNewListItemDialogFragment = new NewGroceryListItemDialogFragment();
 
         RecyclerView mRecyclerView = findViewById(R.id.list);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -56,8 +59,8 @@ public class ListDetailActivity
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
         ItemsData itemsData = new ItemsData();
-        List<Item> itemsList = itemsData.getItemsList();
-        mAdapter.setItemsList(itemsList);
+        mItemsList = itemsData.getItemsList();
+        mAdapter.setItemsList(mItemsList);
 
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -70,7 +73,7 @@ public class ListDetailActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mNewListTitleDialogFrament.show(getSupportFragmentManager(), NEW_LIST_TITLE_DIALOG_FRAGMENT_TAG);
+                mNewListItemDialogFragment.show(getSupportFragmentManager(), NEW_LIST_ITEM_DIALOG_FRAGMENT_TAG);
             }
         });
 
@@ -123,5 +126,10 @@ public class ListDetailActivity
     private boolean openSortingOptionsDialog() {
         mSortingFragment.show(getSupportFragmentManager(), SORTING_FRAGMENT_TAG);
         return true;
+    }
+
+    @Override
+    public void DismissNewListItemDialogFragmentWithResult(String newItemName) {
+        mItemsList.add(new Item(mItemsList.size(), newItemName));
     }
 }

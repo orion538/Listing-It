@@ -6,8 +6,11 @@
 
     <string name="sort_by">Sort by</string>
 
+    <string name="sorting_button_explanation">Sort</string>
     <string name="sorting_item_alphabet">Alphabet</string>
     <string name="sorting_item_created">Created</string>
     <string name="sorting_item_manual">Manual</string>
-    <string name="dummy">Dummy</string>
+
+    <string name="grocery_list_new_item_title">Enter new product name</string>
+    <string name="grocery_list_item_name">Product Name</string>
 </resources>
